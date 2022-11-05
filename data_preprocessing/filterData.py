@@ -71,27 +71,6 @@ fprintf('Smoothed instantaneous amplitudes in %f seconds.\n', toc);
 
 
 
-
-
-
-'''--Tuesday, 18 october--
-I set the nominal values for the filterData function. 
-Sketched out the parts of the filerData function.
-
-'''
-
-'''--Sunday, 23 october--
-I am working on the 'smooth phases and approximate frequencies' part 
-of the filterData function. 
-I am learning matlab syntax along the way.
-Apparently, their savitzkyGolayFilter is custom too, so I will 
-have to look into that next, in order to do this filterData function.
-
-
-
-
-'''
-
 '''Matlab Syntax:
 s = strcat(s1,...,sN); #%Concatenate strings horizontally
 

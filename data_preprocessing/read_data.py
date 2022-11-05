@@ -1,11 +1,16 @@
+from re import U
 import pandas as pd
+import numpy as np
+
+'''THIS FUNCTION HAS PROBLEMS!!!!! DO NOT USE UNTIL YOU'VE FIXED IT!!!'''
 
 def read_data(filename):
+    '''return flyID, frame, features, df.columns.values'''
     df = pd.read_csv(filename, nrows=200)
-    data = df.to_numpy()
-    flyID = data[:,0]
-    frame = data[:,1]
-    features = data[:1:]
+    data = np.transpose(df.to_numpy())
+    flyID = data[0]
+    frame = data[1]
+    features = data
     return flyID, frame, features, df.columns.values
 
 

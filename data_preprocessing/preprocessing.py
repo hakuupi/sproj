@@ -8,12 +8,13 @@ from filterData import *
 import numpy as np
 
 data = read_data('/Users/haqbook/Documents/GitHub/sproj/newData.csv')
+print(data[3])
 cleanData = filterData(data)
 
 # export data in .mat format, so that I can then try to run the figure plots in matlab with their code.
 
 
-'''Questions:
+'''Notes:
 - 
 '''
 
