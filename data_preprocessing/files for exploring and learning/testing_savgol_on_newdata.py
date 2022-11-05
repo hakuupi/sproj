@@ -17,7 +17,7 @@ Run at bottom.
 
 def A(n_rows,col_choice, degr):
     # load data
-    df = pd.read_csv('/Users/haqbook/Documents/GitHub/sproj/newData.csv', nrows=n_rows)
+    df = pd.read_csv('/Users/haqbook/Documents/GitHub/sproj/data_files/newData.csv', nrows=n_rows)
     data = np.transpose(df.to_numpy())
     labels = df.columns.values
     t = data[1] #frames

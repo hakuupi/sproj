@@ -18,37 +18,32 @@ from matplotlib.widgets import Slider
 '''
 
 
+def filt(data, newToVarList, varList=[], dorder=0, forder=3, wlen=15):
+    '''Returns: (frame indices array, y_filtered array, labels).
+    Inputs: data should be one column of a numpy array. (next step: accept one or more column!)
+    varList the current labels of datatable in a list.
+    newToVarList the titles of the new post filtering columns you want to add to the datatable.
+    dorder is deriv, 
+    forder is polyorder,
+    and wlen is windowlength '''
+    if type(newToVarList)!= list: newToVarList = [newToVarList]
+    labels = varList + newToVarList
 
+    t = np.indices(data.shape) #frames
 
+    # applying the savitzky golay filter
+    y = data
+    y_filtered1 = savgol_filter(y, wlen, forder, deriv=dorder)
+    return(t[0], y_filtered1, labels)
 
-
-
-def filt(newData, varList, dorder, forder, wlen):
-    # get noisy signal
-    pass
+'''y = np.array([1,3,4,7,1,2,4,6,2,1,6,3,7,54,542,345,83,60,2,14,54,32,10])
+b = ["a", "b"]
+c = "test"
+t,yNew, labels = filt(y,b,c)
+print(t)
+print(y)
+print(yNew)
 '''
-# applying the savitzky golay filter
-y_filtered1 = savgol_filter(y, 99, 3)
-
-# plot noisy and cleaned of various window lengths
-fig = plt.figure()
-ax = fig.subplots()
-p0 = ax.plot(x,y, '-*')
-p, = ax.plot(x,y_filtered1, 'g')
-
-ax_slide = plt.axes([0.25,0.1,0.65,0.03])
-win_len = Slider(ax_slide, 'Window length', valmin=5, valmax=99, valinit=99, valstep=2)
-
-def update(val):
-    current_v = int(win_len.val)
-    new_y = savgol_filter(y, current_v, 3)
-    p.set_ydata(new_y)
-    fig.canvas.draw()
-win_len.on_changed(update)
-plt.show()
-'''
-
-
 
 
 

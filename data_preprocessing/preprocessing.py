@@ -7,7 +7,7 @@ from read_data import *
 from filterData import *
 import numpy as np
 
-data = read_data('/Users/haqbook/Documents/GitHub/sproj/newData.csv')
+data = read_data('/Users/haqbook/Documents/GitHub/sproj/data_files/newData.csv')
 print(data[3])
 cleanData = filterData(data)
 

@@ -7,7 +7,7 @@ from matplotlib.widgets import Slider, TextBox
 that visualises the data in newdata.csv. 
 Run on the first n-rows of the data file.'''
 n_rows=200
-df = pd.read_csv('/Users/haqbook/Documents/GitHub/sproj/newData.csv', nrows=n_rows)
+df = pd.read_csv('/Users/haqbook/Documents/GitHub/sproj/data_files/newData.csv', nrows=n_rows)
 #df1 = df.head()
 data = np.transpose(df.to_numpy())
 labels = df.columns.values
