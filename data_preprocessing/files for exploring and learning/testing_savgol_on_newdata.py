@@ -24,13 +24,15 @@ def A(n_rows,col_choice, degr):
 
     # applying the savitzky golay filter
     y = data[col_choice]
-    y_filtered1 = savgol_filter(y, 15, degr)
+    y_filtered1 = savgol_filter(y, 15, degr, deriv=0)
+    y_filtered2 = savgol_filter(y, 15, degr, deriv=1)
 
     # plot data of nth column with variable window length
     fig = plt.figure()
     ax = fig.subplots()
     p0 = ax.plot(t,y, '-*')
-    p, = ax.plot(t,y_filtered1, 'r')
+    p1 = ax.plot(t,y_filtered1, '-*')
+    p, = ax.plot(t,y_filtered2, 'r')
     plt.title("Plot smoothed vs unsmoothed "+ labels[col_choice])
 
     ax_slide = plt.axes([0.25,0.1,0.65,0.03])
@@ -88,7 +90,7 @@ def main():
     # for function A
     colChoice = 101     # choose which data column of newdata to plot
     # for function B
-    wLen=15             # choose window length
+    wLen=5             # choose window length
 
     #      call        functions
     A(nRows,colChoice, degree)

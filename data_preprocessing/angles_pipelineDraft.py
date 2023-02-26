@@ -18,7 +18,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from read_h5_data import read_h5_data
 from write_degrees_from_raw_h5 import getDegrees
-from savitzkyGolayFilter import filt
+from savitzkyGolayFilter import savgolfilt
 
 myDataset = '/Users/HAQbook/Documents/GitHub/sproj/data_files/example_antmovie_raw_data.h5'
 # file is copy of: '/Users/HAQbook/Desktop/depth_stuff/deeplabcut_stuff/antmovie220302180238DLC_resnet101_BU_trailApr4shuffle1_700000.h5'
@@ -145,15 +145,16 @@ limbs = {"antennaL0": [1,0,18], "antennaL1": [1,0,19], "antennaL2": [1,0,20],
 #plotCorrelation(limbs,"antennaL0","backLegL0")
 
 #---savgol stuff 
-blL0 = getDegrees(limbs,"backLegL0",)
-aL0 = getDegrees(limbs,"antennaL0",)
-t,blL0_smoothed, lbl1 = filt(blL0, "backLegL0_smoothed_degrees", forder=9, wlen=21)
-t,aL0_smoothed, lbl2 = filt(aL0, "antennaL0_smoothed_degrees", forder=9, wlen=21)
+#blL0 = getDegrees(limbs,"backLegL0",)
+#aL0 = getDegrees(limbs,"antennaL0",)
+#t,blL0_smoothed, lbl1 = savgolfilt(blL0, "backLegL0_smoothed_degrees", dorder=0, forder=9, wlen=21)
+#t,aL0_smoothed, lbl2 = savgolfilt(aL0, "antennaL0_smoothed_degrees", forder=9, wlen=21)
 
 #plt.plot(t,blL0_smoothed, label=lbl1)
 #plt.plot(t,aL0_smoothed, label=lbl2)
-plt.scatter(blL0,aL0,label="Correlation blL0, aL0", alpha=0.5, marker='o')
-plt.title("Correlation dots: plots two angles over all frames on x and y axis to each other per frame")
+#plt.scatter(blL0,aL0,label="Correlation blL0, aL0", alpha=0.5, marker='o')
+#plt.title("Correlation dots: plots two angles over all frames on x and y axis to each other per frame")
+
 
 
 #---

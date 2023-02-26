@@ -18,7 +18,7 @@ from matplotlib.widgets import Slider
 '''
 
 
-def filt(data, newToVarList, varList=[], dorder=0, forder=3, wlen=15):
+def savgolfilt(data, newToVarList=[], varList=[], dorder=0, forder=3, wlen=15):
     '''Returns: (frame indices array, y_filtered array, labels).
     Inputs: data should be one column of a numpy array. (next step: accept one or more column!)
     varList the current labels of datatable in a list.

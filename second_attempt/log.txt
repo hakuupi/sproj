@@ -1,0 +1,65 @@
+1. Mozart K545, 2nd mov:
+Playthrough 1: 00:07 - 00:57
+Playthrough 2 (while watching Perlemuter): 01:02 - 01:48
+Excercise x: 01:52 - 02:12 (x: im stehen gehen)
+Playthrough 3: 02:16 - 02:59
+Playthrough 4 (while thinking y): 03:03 - 03:44 (y: 'dass die Finger zussammen sein sollen, und die Proportionen zwischen den aeusseren und inneren Gliedern passen soll'.)
+Playthrough 5 (while watching Perlemuter): 03:59 - 04:43
+Playthrough 6 (audience): 04:59 - 05:46
+
+2. Scriabin 2nd mov, var. 1 chords:
+Playthrough 1: 00:07 - 00:28
+Playthrough 2 (while watching Yunchan): 00:30 - 00:51
+Excercise x: 00:53 - 01:26 (x: im sitzen gehen, pendel, aufgefaechert, sterne gleichzeitig -> standard Akkorduebung)
+Playthrough 3: 01:27 - 01:48
+Playthrough 4 (while thinking y): 02:06 - 02:27 (y: ??)
+Playthrough 5 (while watching Yunchan): 02:32 - 02:54 
+Playthrough 6 (audience): 03:08 - 03:29
+
+3. Scriabin 2nd mov, soft coda progressions:
+Playthrough 1: 00:08 - 00:30
+Playthrough 2 (while watching Perlemuter): 00:41 - 01:04
+Excercise x: 01:05 - 01:40 (x: RH die progression in Stufen von oben/aussen; LH pendel, die progression von Aussen)
+Playthrough 3: 01:41 - 02:01
+Playthrough 4 (while thinking y): 02:08 - 02:27 (y: alle Sachen die in dieser Passage in den Noten stehen)
+Playthrough 5 (while watching Perlemuter): 02:29 - 02:48 
+Playthrough 6 (audience): 02:54 - 03:15
+
+4. Scriabin 3rd mov, flying chords:
+Playthrough 1: 00:11 - 00:30
+Playthrough 2 (while watching Yunchan): 00:33 - 00:51
+Excercise x: 00:55 - 01:28 (x: Standard Akkorduebung)
+Playthrough 3: 01:37 - 01:55
+Playthrough 4 (while thinking y): 02:17 - 02:34 (y: buendeln, Finger sind nur Quasten, und Kopf wie Yunchan)
+Playthrough 5 (while watching Yunchan): 02:38 - 02:53
+Playthrough 6 (audience): 03:02 - 03:19 (I forgot one octave!)
+
+5. Chopin Etude 25/12:
+Playthrough 1: 00:08 - 00:25
+Playthrough 2 (while watching Perlemuter(?)): 00:31 - 00:47
+Excercise x: 01:02 - 01:40 (x: Als cluster/akkorde, dann die progression in Stufen von oben/aussen)
+Playthrough 3: 01:29 - 01:45
+Playthrough 4 (while thinking y): 01:50 - 02:06 (y: alle Sachen die in dieser Passage in den Noten stehen)
+Playthrough 5 (while watching Perlemuter(?)): 02:15 - 02:31
+Playthrough 6 (audience): 02:32 - 02:50
+
+6. Bach Allemande:
+Playthrough 1: 00:04 - 00:52
+Playthrough 2 (while watching Perlemuter): 01:00 - 01:47
+Excercise x: 01:49 - 02:32 (x: Im stehen gehen)
+Playthrough 3: 02:36 - 03:22
+Playthrough 4 (while thinking y): 03:40 - 04:28 (y: 'dass die Finger Quasten sind, und bei den Akkorden dass die Sonnen sich zusammentreffen, und dass man nicht legato bei den Fingern macht.')
+Playthrough 5 (while watching Perlemuter): 04:30 - 05:15
+Playthrough 6 (audience): 05:25 - 06:15
+
+
+
+Questions:
+- more side-to-side body movement in audience playthroughs?
+- less side-to-side body movement as 'practice' progresses through excercises/thoughts/videos?
+
+  
+
+To-do: 
+- Fill info into https://docs.google.com/spreadsheets/d/1LfrMQ_lwOCr8iFjU7H5HWdKCY3t2VqgrRXodDXtno10/edit#gid=0
+and export as csv
