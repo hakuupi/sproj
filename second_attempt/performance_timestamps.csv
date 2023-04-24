@@ -1,0 +1,7 @@
+CSV filename,Piece,Playthrough 1 start,Playthrough 1 stop,Playthrough 2 start,Playthrough 2 stop,Excercise start,Excercise stop,Playthrough 3 start,Playthrough 3 stop,Playthrough 4 start,Playthrough 4 stop,Playthrough 5 start,Playthrough 5 stop,Playthrough 6 start,Playthrough 6 stop
+piano01_001clean,"Mozart K545, 2nd mov",7,57,62,108,112,132,136,179,183,224,239,283,299,346
+piano01_002clean,"Scriabin 2nd mov, var. 1 chords",7,28,30,51,53,86,87,108,126,147,152,174,188,209
+piano01_003clean,"Scriabin 2nd mov, soft coda progressions",8,30,41,64,65,100,101,121,128,147,149,168,174,195
+piano01_004clean,"Scriabin 3rd mov, flying chords",11,30,33,51,55,88,97,115,137,154,158,173,182,199
+piano01_005clean,Chopin Etude 25/12,8,25,31,47,62,100,89,105,110,126,135,151,152,170
+piano01_006clean,Bach Allemande,4,52,60,107,109,152,156,202,220,268,270,315,325,375

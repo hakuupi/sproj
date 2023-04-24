@@ -5,7 +5,8 @@ from matplotlib import animation
 import pandas as pd
 from sklearn.preprocessing import normalize
 
-def getDegrees2D(POINTSx):
+
+def getDegrees2D(repo, vals, POINTSx):
     '''Gets angle between three points ps=[p1,p2,p3] over all frames'''
     p1x = repo.columns.get_loc("piano_pilot_01:"+POINTSx[0]+"x") # get the x,y,z data for each of the three points over all frames
     p2x = repo.columns.get_loc("piano_pilot_01:"+POINTSx[1]+"x")
@@ -20,22 +21,37 @@ def getDegrees2D(POINTSx):
     v1_u = unit_vector(v1) # vectors -> unit vectors
     v2_u = unit_vector(v2)
     ang = np.rad2deg(np.arccos(np.sum(v1_u*v2_u, axis=1))) # calculate angle between vectors
-    return(ang)
+    return(ang) 
 
-def plot_degVStime2D(lisPOINTSx, len):
-    '''For each triplet ps=[p1,p2,p3] in list, plots angle between three points ps_n over all frames.'''
-    X = np.linspace(0, len//240, len) # x-axis for graph: frame # -> seconds 
+def plot_degVStime2Ds(repo, vals, lisPOINTSx, ln):
+    '''SINGLE DATASOURCE!! For each triplet ps=[p1,p2,p3] in list, plots angle between three points ps_n over all frames.'''
+    X = np.linspace(0, ln//240, ln) # x-axis for graph: frame # -> seconds 
     for count,POINTSx in enumerate(lisPOINTSx):
-        ang = getDegrees2D(POINTSx)
+        ang = getDegrees2D(repo, vals, POINTSx)
         plt.plot(X,ang,alpha=0.5, label=count) # generate plot
     plt.ylabel("Degrees")
     plt.xlabel("Time (sec)")
     plt.legend()
     plt.show()
+
+def plot_degVStime2D(lisANGLES, lisLABELS, title=''):
+    '''MULTI DATASOURCE!! For each array in lisANGLES, 
+    plot them over length of the longest array over time.
+    Label each line by the corresponding label from lisLABELS.'''
+    plt.figure(figsize=(18, 5))
+    for count,ang in enumerate(lisANGLES):
+        ln = np.size(lisANGLES[count],0)
+        X = np.linspace(0, ln//240, ln) # x-axis for graph: frame # -> seconds 
+        plt.plot(X,ang,color=((6-count)/6,0.4,(count+1)/6,0.8), label=lisLABELS[count]) # generate plot
+    plt.ylabel("Degrees")
+    plt.xlabel("Time (sec)")
+    plt.title(title)
+    plt.legend()
+    #plt.show()
 
 def plot_degVSdeg2D(xPOINTSx,lisPOINTSx):
     '''For each triplet ps=[p1,p2,p3] in list, plots angle between three points ps_n over all frames.'''
-    X = getDegrees2D(xPOINTSx) # x-axis for graph: frame # -> seconds 
+    X = getDegrees2D(xPOINTSx) # x-axis for graph
     for count,POINTSx in enumerate(lisPOINTSx):
         ang = getDegrees2D(POINTSx)
         plt.plot(X,ang,alpha=0.5, label=count) # generate plot
@@ -44,7 +60,7 @@ def plot_degVSdeg2D(xPOINTSx,lisPOINTSx):
     plt.legend()
     plt.show()
 
-def plot3D(coordsX, coordsY, coordsZ, coarseness, len):
+def plot3D(coordsX, coordsY, coordsZ, coarseness, ln):
     '''Plots a three 1D arrays as a point over time in 3D'''
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d') # 3D plotting things
@@ -78,8 +94,49 @@ def plot3D(coordsX, coordsY, coordsZ, coarseness, len):
     #ani.save('matplot003.gif', writer='imagemagick')
     plt.show()
 
-def plotLimb3D(vals, limb, coarseness, len):
+def plotLimb3D(vals, limb, coarseness, ln):
     '''Plots a limb point over time in 3D'''
     x,y,z = np.array(vals[:,limb]),np.array(vals[:,limb+1]),np.array(vals[:,limb+2])
-    plot3D(x,y,z, coarseness, len)
+    plot3D(x,y,z, coarseness, ln)
 
+
+
+
+'''
+
+Column names of limbs that we care about atm:
+- STRN
+- LASI
+- LSHO 
+- LELB 
+- LFIN
+- LWRA
+- LWRB
+
+Reasonable triples for angles:
+["LASI","LSHO","LELB"]
+["LSHO","LELB","LWRA"]
+["LELB","LWRA","LFIN"]
+
+
+-------------CHOICES--------------
+coarseness = 20 #min: 5 
+len = np.size(vals,0) #max: np.size(vals,0)
+limb = "LSHO"
+
+a1 = p.getDegrees2D(repo, vals, ["LASI","LSHO","LELB"])
+a2 = p.getDegrees2D(repo, vals, ["LSHO","LELB","LWRA"])
+a3 = p.getDegrees2D(repo, vals, ["LELB","LWRA","LFIN"])
+
+angleBetweens = [["LASI","LSHO","LELB"],["LSHO","LELB","LWRA"],["LELB","LWRA","LFIN"]]
+
+-----------FUNC CALLS--------------
+#p.plotLimb3D(vals, repo.columns.get_loc("piano_pilot_01:"+limb+"x"), coarseness, len)
+#p.plot_degVStime2D(angleBetweens,len)
+#p.plot3D(a1, a2, a3, coarseness, len)
+#p.plot_degVSdeg2D(["LSHO","LELB","LWRA"],angleBetweens)
+
+-------------------------
+
+
+'''

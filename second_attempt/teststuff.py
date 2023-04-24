@@ -1,61 +1,59 @@
-# import required modules
 import numpy as np
-import matplotlib
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+import pandas as pd
+from sklearn.preprocessing import normalize
 
 
-def updateline(num, data, line1, data2, line2):
-	line1.set_data(data[..., :num])
-	line2.set_data(data2[..., :num])
-	
-	time_text.set_text("Points: %.0f" % int(num))
-	
-	return line1, line2
+def np_piece_data_from_csv(num, piece, deriv=False):
+    if deriv:
+        filename = f'data/piano01_00{str(piece)}_p{str(num)}_d.csv' #performance number 1-6
+    else:
+        filename = f'data/piano01_00{str(piece)}_p{str(num)}.csv' #performance number 1-6
+    repo = pd.read_csv(filename,header=0)
+    columns=['Frame', 'Time (Seconds)']
+    repo = repo.drop(columns, axis=1)
+    vals = repo.to_numpy(dtype=float)
+    mask = np.isnan(vals)
+    vals[mask] = np.interp(np.flatnonzero(mask), np.flatnonzero(~mask), vals[~mask])
+    return repo, vals
 
+def getDegrees2D(repo, vals, POINTSx): # duplicate in 'degrees2D.ipynb'
+    '''Gets angle between three points ps=[p1,p2,p3] over all frames'''
+    p1x = repo.columns.get_loc("piano_pilot_01:"+POINTSx[0]+"x") # get the x,y,z data for each of the three points over all frames
+    p2x = repo.columns.get_loc("piano_pilot_01:"+POINTSx[1]+"x")
+    p3x = repo.columns.get_loc("piano_pilot_01:"+POINTSx[2]+"x")
 
-# generating data of 100 elements
-# each for line 1
-x = np.linspace(0, 2*np.pi, 100)
-y = np.sin(x)
-data = np.array([x, y])
+    def unit_vector(vector):
+        '''helper function to normalise vectors'''
+        return normalize(vector, axis=1, norm='l2')
 
-# generating data of 100 elements
-# each for line 2
-x2 = np.linspace(0, 2*np.pi, 100)
-y2 = np.cos(x2)
-data2 = np.array([x2, y2])
+    v1 = vals[:,p1x:p1x+3] - vals[:,p2x:p2x+3] # 3 points -> 2 vectors
+    v2 = vals[:,p3x:p3x+3] - vals[:,p2x:p2x+3]
+    v1_u = unit_vector(v1) # vectors -> unit vectors
+    v2_u = unit_vector(v2)
+    ang = np.rad2deg(np.arccos(np.sum(v1_u*v2_u, axis=1))) # calculate angle between vectors
+    return(ang) 
 
-# setup the formatting for moving files
-Writer = animation.writers['ffmpeg']
-Writer = Writer(fps=10, metadata=dict(artist="Me"), bitrate=-1)
+perf = 1
+piece = 5
+limb = ["LASI","LSHO","LELB"]
+repo, vals = np_piece_data_from_csv(perf,piece)
+signal = getDegrees2D(repo, vals, POINTSx = limb)
 
+sample_rate = 240
+max_time = signal.size/sample_rate
 
-fig = plt.figure()
-ax = fig.add_subplot(111)
-l, = ax.plot([], [], 'r-', label="Sin")
-ax2 = ax.twinx()
-k = ax2.plot([], [], 'b-', label="Cos")[0]
+time_steps = np.linspace(0, max_time, signal.size)
+plt.figure()
+plt.plot(time_steps, signal)
+plt.xlabel("Time [s]")
+plt.ylabel("Amplitude")
 
-ax.legend([l, k], [l.get_label(), k.get_label()], loc=0)
-
-ax.set_xlabel("X")
-
-# axis 1
-ax.set_ylim(-1.5, 1.5)
-ax.set_xlim(0, 7)
-
-# axis 2
-ax2.set_ylim(-1.5, 1.5)
-ax2.set_xlim(0, 7)
-
-plt.title('Sin and Cos')
-time_text = ax.text(0.1, 0.95, "", transform=ax.transAxes,
-					fontsize=15, color='red')
-
-# set line_animation variable to call
-# the function recursively
-line_animation = animation.FuncAnimation(
-	fig, updateline, frames=100, fargs=(data, l, data2, k))
-#line_animation.save("lines.mp4", writer=Writer)
+f = np.abs(np.fft.rfft(signal))
+freq_steps = np.fft.rfftfreq(signal.size, d=1/sample_rate)
+plt.figure()
+plt.plot(freq_steps, f)
+plt.xlabel("Frequency [Hz]")
+plt.ylabel("Amplitude")
+plt.xlim(0,4)
 plt.show()
