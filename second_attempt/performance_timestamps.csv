@@ -5,3 +5,49 @@ piano01_003clean,"Scriabin 2nd mov, soft coda progressions",8,30,41,64,65,100,10
 piano01_004clean,"Scriabin 3rd mov, flying chords",11,30,33,51,55,88,97,115,137,154,158,173,182,199
 piano01_005clean,Chopin Etude 25/12,8,25,31,47,62,100,89,105,110,126,135,151,152,170
 piano01_006clean,Bach Allemande,4,52,60,107,109,152,156,202,220,268,270,315,325,375
+
+
+angLSHO = ["LASI","LSHO","LELB"]
+angLELB = ["LSHO","LELB","LWRA"]
+angLWRA = ["LELB","LWRA","LFIN"]
+angRSHO = ["RASI","RSHO","RELB"]
+angRELB = ["RSHO","RELB","RWRA"]
+angRWRA = ["RELB","RWRA","RFIN"]
+
+
+piano_pilot_01:C7
+piano_pilot_01:CLAV
+
+piano_pilot_01:LASI
+piano_pilot_01:LBHD
+piano_pilot_01:LELB
+piano_pilot_01:LFHD
+piano_pilot_01:LFIN
+piano_pilot_01:LFRM
+piano_pilot_01:LPSI
+piano_pilot_01:LSHO
+piano_pilot_01:LUPA
+piano_pilot_01:LWRA
+piano_pilot_01:LWRB
+
+(Same for right side)
+
+piano_pilot_01:STRN
+piano_pilot_01:T10
+ref:01_RLowererectorspinae
+ref:02_Rerectorspinae01
+ref:03_Rerectorspinae02
+ref:04_Rerectorspinae03
+ref:05_Rerectorspinae04
+ref:06_Rerectorspinae05
+ref:07_RUppererectorspinae
+ref:08_Lerectorspinae00
+ref:09_Lerectorspinae01
+ref:10_Lerectorspinae02
+ref:11_Lerectorspinae03
+ref:12_Lerectorspinae04
+ref:13_Lerectorspinae05
+ref:14_Lerectorspinae06
+ref:15_LInnerShoulderBlade
+ref:16_LOuterShoulderBlade
+ref:17_ROuterShoulderBlade

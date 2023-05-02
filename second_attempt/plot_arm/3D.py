@@ -7,9 +7,9 @@ import pandas as pd
 # Data loading
 def np_piece_data_from_csv(num, piece, deriv=False):
     if deriv:
-        filename = f'data/piano01_00{str(piece)}_p{str(num)}_d.csv' 
+        filename = f'/Users/HAQbook/Desktop/graaaaphs/data/piano01_00{str(piece)}_p{str(num)}_d.csv' 
     else:
-        filename = f'data/piano01_00{str(piece)}_p{str(num)}.csv' 
+        filename = f'/Users/HAQbook/Desktop/graaaaphs/data/piano01_00{str(piece)}_p{str(num)}.csv' 
     repo = pd.read_csv(filename,header=0)
     columns=['Frame', 'Time (Seconds)']
     repo = repo.drop(columns, axis=1)
@@ -20,7 +20,7 @@ def np_piece_data_from_csv(num, piece, deriv=False):
 
 
 # Actual stuff
-def plot3D(coordsX, coordsY, coordsZ, coarseness, ln):
+def plot3D(coordsX, coordsY, coordsZ, coarseness, ln, TITLE : str = ''):
     '''Plots a three 1D arrays as a point over time in 3D'''
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d') # 3D plotting things
@@ -52,22 +52,24 @@ def plot3D(coordsX, coordsY, coordsZ, coarseness, ln):
 
     ani = animation.FuncAnimation(fig, update, N, fargs=(data, line), interval=10000/N, blit=False)
     #ani.save('matplot003.gif', writer='imagemagick')
+    plt.title(TITLE)
     plt.show()
 
-def plotLimb3D(repo, vals, limb, coarseness, ln):
+def plotLimb3D(repo, vals, limb, coarseness, ln, TITLE:str=''):
     '''Plots a limb point over time in 3D. 
     Note: Coarseness=n plots every nt frame'''
     lind = repo.columns.get_loc("piano_pilot_01:"+limb+"x")
     x,y,z = np.array(vals[:,lind]),np.array(vals[:,lind+1]),np.array(vals[:,lind+2])
-    plot3D(x,y,z, coarseness, ln)
+    plot3D(x,y,z, coarseness, ln, TITLE)
 
 
 # Main
 def main():
-    perf = 1
+    perf = 4
     piece = 5
+    limb = "LSHO"
     repo,vals = np_piece_data_from_csv(perf, piece, deriv=False)
     print(len(vals))
-    plotLimb3D(repo, vals, "LSHO", 10, len(vals))
+    plotLimb3D(repo, vals, limb, 10, len(vals), TITLE=f"Position of {limb} on performance {perf} of piece {piece}")
 if __name__ == '__main__':
     main()
